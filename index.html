@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mis Pólizas — Portal Intermediarios</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Roboto',sans-serif;background:#fafafa;color:#1b1b1b;min-height:100vh}
+a{text-decoration:none;color:inherit}
+.header{display:flex;align-items:center;justify-content:space-between;background:#fff;padding:0.6rem 2rem;position:sticky;top:0;z-index:100;height:72px;box-shadow:2px 2px 16px rgba(115,115,115,0.16)}
+.header__left{display:flex;align-items:center;gap:0.75rem}
+.logo-icon{width:30px;height:30px;background:#009056;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#FFE16F;font-size:0.8rem}
+.logo-text{font-weight:700;font-size:0.75rem;color:#1b1b1b;line-height:1.2}
+.logo-text small{display:block;font-size:0.6rem;font-weight:400;color:#757575}
+.header__title{font-size:1.25rem;font-weight:700;color:#086d44}
+.header__right{display:flex;align-items:center;gap:0.5rem}
+.icon-btn{background:#fafafa;border:none;cursor:pointer;color:#05794a;font-size:1rem;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.avatar{width:40px;height:40px;background:#5b5b5b;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.8rem;font-weight:600}
+.user-info{font-size:0.75rem;line-height:1.3}
+.user-name{font-weight:700}
+.user-role{color:#757575;font-size:0.625rem}
+.layout{display:flex;min-height:calc(100vh - 72px)}
+.sidebar{width:280px;background:#fff;flex-shrink:0;padding:1.5rem 1rem;box-shadow:1px 1px 8px rgba(115,115,115,0.12)}
+.stabs{display:flex;margin-bottom:1.25rem;border-radius:8px;overflow:hidden;border:1px solid #e1e1e1;background:#fafafa;padding:0.4rem;gap:4px}
+.stab{flex:1;padding:0.5rem;text-align:center;font-size:0.875rem;font-weight:700;border:none;cursor:pointer;background:#fff;color:#757575;border-radius:8px;font-family:inherit}
+.stab--on{background:#038450;color:#fff}
+.mitem{display:flex;align-items:center;gap:0.5rem;padding:0.6rem 0.75rem;font-size:0.875rem;color:#282828;cursor:pointer;border:none;background:none;width:100%;text-align:left;font-family:inherit;border-radius:8px;height:40px}
+.mitem:hover{background:#e5f4ee}
+.mitem--on{font-weight:700;background:#e5f4ee}
+.mitem i{width:20px;text-align:center;font-size:1rem}
+.mitem--sub{padding-left:2.25rem;font-size:0.8rem;color:#757575;height:32px}
+.main{flex:1;padding:1.5rem 2rem;overflow-y:auto}
+.breadcrumb{font-size:0.8rem;color:#757575;margin-bottom:0.5rem}
+.breadcrumb a{color:#009056}
+.page-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.25rem}
+.page-title{font-size:1.5rem;font-weight:700;color:#282828}
+.page-sub{font-size:0.875rem;color:#757575;margin-top:0.25rem}
+.btn-primary{display:inline-flex;align-items:center;gap:0.5rem;background:#009056;color:#fff;border:none;border-radius:8px;padding:0.6rem 1.25rem;font-size:0.875rem;font-weight:700;cursor:pointer;font-family:inherit}
+.btn-primary:hover{background:#038450}
+.filter-card{background:#fff;border:1px solid #e1e1e1;border-radius:12px;padding:1.25rem;margin-bottom:1.25rem;box-shadow:1px 1px 8px rgba(115,115,115,0.08)}
+.filter-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1rem}
+.filter-row:last-child{margin-bottom:0}
+.field{display:flex;flex-direction:column;gap:0.3rem}
+.field label{font-size:0.75rem;font-weight:500;color:#757575}
+.field input,.field select{font-family:inherit;font-size:0.875rem;padding:0.5rem 0.75rem;border:1px solid #b9b9b9;border-radius:6px;background:#fff;color:#1b1b1b;height:40px}
+.field input:focus,.field select:focus{outline:2px solid #009056;border-color:#009056}
+.field input::placeholder{color:#b9b9b9}
+.link-clear{display:inline-flex;align-items:center;gap:0.4rem;color:#009056;font-size:0.8rem;font-weight:500;cursor:pointer;align-self:flex-end;padding:0.5rem 0}
+.link-clear:hover{color:#038450;text-decoration:underline}
+.tabs-row{display:flex;align-items:center;gap:0.5rem;margin-bottom:1.25rem}
+.pill{display:inline-flex;align-items:center;gap:0.4rem;padding:0.45rem 1rem;border-radius:20px;border:1.5px solid #e1e1e1;background:#fff;font-size:0.8rem;font-weight:500;color:#757575;cursor:pointer;font-family:inherit;transition:all .15s}
+.pill:hover{border-color:#009056;color:#009056;background:#e5f4ee}
+.pill--on{background:#009056;color:#fff;border-color:#009056;font-weight:700}
+.pill--on:hover{background:#038450}
+.pill i{font-size:0.7rem}
+.table-wrap{overflow-x:auto;background:#fff;border-radius:12px;border:1px solid #e1e1e1;box-shadow:1px 1px 8px rgba(115,115,115,0.08)}
+table{width:100%;border-collapse:collapse;font-size:0.8rem}
+th,td{padding:0.6rem 0.75rem;text-align:left;border-bottom:1px solid #f0f0f0;white-space:nowrap}
+th{background:#fafafa;font-weight:700;color:#282828;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.3px;position:sticky;top:0}
+tbody tr:hover{background:#f8fdf9}
+.badge{display:inline-block;padding:0.15rem 0.5rem;border-radius:4px;font-size:0.7rem;font-weight:700}
+.badge--ok{background:#e5f4ee;color:#009056;border:1px solid #cce9dd}
+.badge--err{background:#fef2f2;color:#dc2626;border:1px solid #fecaca}
+.badge--warn{background:#fffcf0;color:#f9a825;border:1px solid #ffe082}
+.pag-row{display:flex;justify-content:space-between;align-items:center;padding:0.75rem 0;font-size:0.8rem;color:#757575}
+.pag-btns{display:flex;gap:0.25rem}
+.pag-btn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:1px solid #e1e1e1;border-radius:6px;background:#fff;cursor:pointer;font-size:0.75rem;font-weight:500;color:#282828;font-family:inherit}
+.pag-btn:hover{border-color:#009056;color:#009056}
+.pag-btn--on{background:#009056;color:#fff;border-color:#009056}
+.pag-btn--dis{opacity:0.4;cursor:default}
+.empty-state{text-align:center;padding:3rem;color:#757575}
+.empty-state i{font-size:2.5rem;color:#b9b9b9;display:block;margin-bottom:0.75rem}
+.expand-btn{background:none;border:none;cursor:pointer;color:#009056;font-size:0.85rem;padding:0.25rem}
+.expand-btn:hover{color:#038450}
+.subvista-row{background:#f8fdf9}
+.subvista-row td{padding:0;border-bottom:2px solid #cce9dd}
+.subvista{padding:1rem 1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.subvista-section{display:flex;flex-direction:column;gap:0.5rem}
+.subvista-title{font-size:0.75rem;font-weight:700;color:#009056;text-transform:uppercase;letter-spacing:0.3px;margin-bottom:0.25rem}
+.subvista-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem}
+.subvista-item{display:flex;flex-direction:column;gap:0.1rem}
+.subvista-item .lbl{font-size:0.65rem;color:#757575;text-transform:uppercase}
+.subvista-item .val{font-size:0.8rem;font-weight:500;color:#282828}
+.cob-list{display:flex;flex-wrap:wrap;gap:0.3rem;margin-top:0.25rem}
+.cob-chip{display:inline-block;padding:0.15rem 0.5rem;background:#e5f4ee;color:#086d44;border-radius:4px;font-size:0.65rem;font-weight:500}
+@media(max-width:1024px){.filter-row{grid-template-columns:repeat(2,1fr)}.sidebar{width:220px}}
+@media(max-width:768px){.layout{flex-direction:column}.sidebar{width:100%}.filter-row{grid-template-columns:1fr}.page-header{flex-direction:column;gap:0.75rem}}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+  <div class="header__left">
+    <div class="logo-icon"><i class="fa-solid fa-shield-halved"></i></div>
+    <div class="logo-text">Portal Intermediarios<small>Seguros Bolívar</small></div>
+  </div>
+  <div class="header__right">
+    <button class="icon-btn"><i class="fa-solid fa-circle-question"></i></button>
+    <button class="icon-btn"><i class="fa-solid fa-grip"></i></button>
+    <div class="avatar">SB</div>
+    <div class="user-info"><span class="user-name">Santiago Botero</span><br><span class="user-role">Perfil</span></div>
+  </div>
+</header>
+
+<div class="layout">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="stabs">
+      <button class="stab stab--on">Mi negocio</button>
+      <button class="stab">Mi cuenta</button>
+    </div>
+    <nav>
+      <button class="mitem"><i class="fa-solid fa-house"></i> Inicio</button>
+      <button class="mitem"><i class="fa-solid fa-binoculars"></i> Prospectar</button>
+      <button class="mitem"><i class="fa-solid fa-file-lines"></i> Gestión de pólizas</button>
+      <button class="mitem"><i class="fa-solid fa-headset"></i> Servicios y reportes</button>
+      <button class="mitem"><i class="fa-solid fa-money-bill-wave"></i> Botón de pagos</button>
+      <button class="mitem"><i class="fa-solid fa-users"></i> Mis clientes</button>
+      <button class="mitem"><i class="fa-solid fa-triangle-exclamation"></i> Siniestros</button>
+      <button class="mitem mitem--on"><i class="fa-solid fa-file-shield"></i> Mis pólizas</button>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main">
+    <div class="breadcrumb">
+      <a href="#">Inicio</a> / Mi Negocio / Mis pólizas
+    </div>
+
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Pólizas</h1>
+        <p class="page-sub">Filtra de acuerdo a tu necesidad</p>
+      </div>
+      <button class="btn-primary"><i class="fa-solid fa-download"></i> Descargas</button>
+    </div>
+
+    <!-- Filtros -->
+    <div class="filter-card">
+      <div class="filter-row">
+        <div class="field">
+          <label for="f-agente">Código de agente</label>
+          <select id="f-agente"><option value="">Seleccione</option><option value="47669">47669 - GUILLERMO CORTES</option><option value="77631">77631 - SEGUROS COMERCIALES BOLIVAR SA</option><option value="77995">77995 - SEGUROS COMERCIALES BOLIVAR SA</option><option value="78203">78203 - SEGUROS COMERCIALES BOLIVAR SA</option><option value="78301">78301 - COMPANIA DE SEGUROS BOLIVAR S.A.</option></select>
+        </div>
+        <div class="field">
+          <label for="f-agrupador">Agrupador comercial</label>
+          <select id="f-agrupador"><option value="">Seleccione</option><option>Automóviles</option><option>Vida</option><option>Hogar</option><option>Salud</option><option>Pymes</option><option>Desempleo</option><option>Acc. Personales</option></select>
+        </div>
+        <div class="field">
+          <label for="f-sublinea">Sublínea comercial</label>
+          <select id="f-sublinea"><option value="">Seleccione</option><option>Hogar</option><option>Empleados</option><option>Independientes</option><option>Personal</option><option>Familiar</option><option>Empresarial</option></select>
+        </div>
+        <div class="field">
+          <label for="f-poliza">Número de póliza</label>
+          <input type="text" id="f-poliza" placeholder="Ej: 1234567">
+        </div>
+      </div>
+      <div class="filter-row">
+        <div class="field">
+          <label for="f-tipodoc">Tipo de documento</label>
+          <select id="f-tipodoc"><option value="">Seleccione</option><option value="CC">CC</option><option value="CE">CE</option><option value="NT">NT</option><option value="NIT">NIT</option></select>
+        </div>
+        <div class="field">
+          <label for="f-numdoc">Número de documento</label>
+          <input type="text" id="f-numdoc" placeholder="Ej: 1234567890">
+        </div>
+        <div class="field">
+          <label for="f-madre">Póliza madre</label>
+          <input type="text" id="f-madre" placeholder="Ej: 9876543">
+        </div>
+        <div class="field">
+          <label for="f-estado">Estado póliza</label>
+          <select id="f-estado"><option value="">Seleccione</option><option value="Vigente">Vigente</option><option value="Cancelada">Cancelada</option></select>
+        </div>
+      </div>
+      <div class="filter-row">
+        <div class="field">
+          <label for="f-prestamo">Estado del préstamo</label>
+          <select id="f-prestamo"><option value="">Seleccione</option><option value="SIN PRESTAMO">Sin préstamo</option><option value="CON PRESTAMO">Con préstamo</option></select>
+        </div>
+        <div class="field">
+          <label for="f-vinicio">Vigencia inicio</label>
+          <input type="date" id="f-vinicio">
+        </div>
+        <div class="field">
+          <label for="f-vfin">Vigencia fin</label>
+          <input type="date" id="f-vfin">
+        </div>
+        <div class="field" style="justify-content:flex-end">
+          <a class="link-clear" onclick="limpiarFiltros()"><i class="fa-solid fa-filter-circle-xmark"></i> Limpiar filtros</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs-row">
+      <button class="pill pill--on" id="tab-proximas" onclick="cambiarTab('Próxima a Renovar')">
+        <i class="fa-solid fa-clock-rotate-left"></i> Próximas a renovar (<span id="cnt-p">0</span>)
+      </button>
+      <button class="pill" id="tab-vigentes" onclick="cambiarTab('Vigente')">
+        <i class="fa-solid fa-circle-check"></i> Vigentes (<span id="cnt-v">0</span>)
+      </button>
+      <button class="pill" id="tab-canceladas" onclick="cambiarTab('Cancelada')">
+        <i class="fa-solid fa-circle-xmark"></i> Canceladas (<span id="cnt-c">0</span>)
+      </button>
+    </div>
+
+    <!-- Tabla -->
+    <div class="table-wrap">
+      <table id="tbl"><thead id="tbl-h"></thead><tbody id="tbl-b"></tbody></table>
+    </div>
+
+    <!-- Estado vacío -->
+    <div id="empty" class="empty-state" hidden>
+      <i class="fa-solid fa-folder-open"></i>
+      No se encontraron pólizas con los criterios seleccionados
+    </div>
+
+    <!-- Paginación -->
+    <div class="pag-row" id="pag-wrap">
+      <span id="pag-info"></span>
+      <div class="pag-btns" id="pag-btns"></div>
+    </div>
+  </main>
+</div>
+
+<script src="./mis-polizas-data.js"></script>
+<script>
+let tab='Próxima a Renovar',pag=1;const PPG=10;
+function v(id){return document.getElementById(id).value.trim();}
+function filtrar(){const f={ag:v('f-agente'),r:v('f-agrupador'),sub:v('f-sublinea'),np:v('f-poliza'),td:v('f-tipodoc'),nd:v('f-numdoc'),pm:v('f-madre'),es:v('f-estado'),ep:v('f-prestamo')};return D.filter(x=>{if(f.ag&&x.ag!==f.ag)return false;if(f.r&&!x.r.toUpperCase().includes(f.r.toUpperCase()))return false;if(f.sub&&!x.s.toUpperCase().includes(f.sub.toUpperCase()))return false;if(f.np&&!x.np.includes(f.np))return false;if(f.td&&x.td!==f.td)return false;if(f.nd&&!x.nd.includes(f.nd))return false;if(f.pm&&x.pm!=='—'&&!x.pm.includes(f.pm))return false;if(f.es&&x.es!==f.es)return false;if(f.ep&&x.ep!==f.ep)return false;return true;});}
+function contar(d){return{p:d.filter(x=>x.ev==='Próxima a Renovar').length,v:d.filter(x=>x.ev==='Vigente').length,c:d.filter(x=>x.ev==='Cancelada').length};}
+function cambiarTab(t){tab=t;pag=1;document.querySelectorAll('.pill').forEach(e=>e.classList.remove('pill--on'));if(t==='Próxima a Renovar')document.getElementById('tab-proximas').classList.add('pill--on');else if(t==='Vigente')document.getElementById('tab-vigentes').classList.add('pill--on');else document.getElementById('tab-canceladas').classList.add('pill--on');render();}
+function limpiarFiltros(){['f-poliza','f-numdoc','f-madre','f-vinicio','f-vfin'].forEach(id=>document.getElementById(id).value='');['f-agente','f-agrupador','f-sublinea','f-tipodoc','f-estado','f-prestamo'].forEach(id=>document.getElementById(id).selectedIndex=0);pag=1;render();}
+function fmt(val){if(!val&&val!==0)return'—';return'$'+Number(val).toLocaleString('es-CO');}
+function fmtp(val){if(val===''||val===null||val===undefined)return'—';return val+'%';}
+function cols(){const b=['','RAMO','PRODUCTO','SUBPRODUCTO','N° PÓLIZA','TIPO DOC','N° DOCUMENTO','CLIENTE','PÓLIZA PRINCIPAL','INICIO VIGENCIA','FIN VIGENCIA','MEDIO DE PAGO','PERIODO','CANAL','SEGMENTO','ASEGURADOS','ASEG. ACTUAL','SINIESTROS','ESTADO','ESTADO PRÉSTAMO','DÍAS MORA','PLACA','PRIMA 2026','ESTADO RECAUDO','MES ÚLT. RECAUDO','VALOR RECAUDADO'];if(tab==='Próxima a Renovar')return[...b,'RENOVACIÓN','PÓLIZA RENOVADA','% CRECIMIENTO'];if(tab==='Vigente')return[...b,'% CRECIMIENTO'];return b;}
+function fila(x){const b=[x.r,x.p,x.s,x.np,x.td,x.nd,x.cl,x.pm,x.iv,x.fv,x.mp,x.pe,x.ca,x.sg,x.as,x.asAct||'—',x.si||'—',x.es,x.ep,x.dm||'—',x.placa||'—',fmt(x.p26),x.er,x.ur||'—',fmt(x.vr)];if(tab==='Próxima a Renovar')return[...b,x.ren||'—',x.pr||'—',fmtp(x.cr)];if(tab==='Vigente')return[...b,fmtp(x.cr)];return b;}
+function badge(es){if(es==='Vigente'||es==='Por renovar')return'<span class="badge badge--ok">'+es+'</span>';if(es==='Cancelada')return'<span class="badge badge--err">Cancelada</span>';return es;}
+function render(){const df=filtrar(),ct=contar(df);document.getElementById('cnt-p').textContent=ct.p;document.getElementById('cnt-v').textContent=ct.v;document.getElementById('cnt-c').textContent=ct.c;const dt=df.filter(x=>x.ev===tab),tot=dt.length,tp=Math.ceil(tot/PPG),ini=(pag-1)*PPG,fin=Math.min(ini+PPG,tot),pg=dt.slice(ini,fin);const c=cols();document.getElementById('tbl-h').innerHTML='<tr>'+c.map(h=>'<th>'+h+'</th>').join('')+'</tr>';if(!pg.length){document.getElementById('tbl-b').innerHTML='';document.getElementById('empty').hidden=false;document.getElementById('pag-wrap').hidden=true;return;}document.getElementById('empty').hidden=true;document.getElementById('pag-wrap').hidden=false;document.getElementById('tbl-b').innerHTML=pg.map(x=>{const idx=D.indexOf(x);const f=fila(x);return'<tr id="row-'+idx+'"><td><button class="expand-btn" onclick="toggleSubvista('+idx+')" title="Ver detalle"><i class="fa-solid fa-chevron-down"></i></button></td>'+f.map((val,i)=>{if(c[i+1]==='ESTADO')return'<td>'+badge(val)+'</td>';return'<td>'+(val||'—')+'</td>';}).join('')+'</tr>';}).join('');document.getElementById('pag-info').textContent='Mostrando '+(ini+1)+' a '+fin+' de '+tot+' registros';let btns='<button class="pag-btn'+(pag===1?' pag-btn--dis':'')+'" onclick="irPag('+(pag-1)+')"><i class="fa-solid fa-chevron-left"></i></button>';for(let i=1;i<=Math.min(tp,5);i++)btns+='<button class="pag-btn'+(i===pag?' pag-btn--on':'')+'" onclick="irPag('+i+')">'+i+'</button>';if(tp>5)btns+='<button class="pag-btn" disabled>...</button><button class="pag-btn" onclick="irPag('+tp+')">'+tp+'</button>';btns+='<button class="pag-btn'+(pag>=tp?' pag-btn--dis':'')+'" onclick="irPag('+(pag+1)+')"><i class="fa-solid fa-chevron-right"></i></button>';document.getElementById('pag-btns').innerHTML=btns;}
+function irPag(p){if(p<1)return;pag=p;render();}
+document.querySelectorAll('select').forEach(el=>el.addEventListener('change',()=>{pag=1;render();}));
+document.querySelectorAll('input[type="text"]').forEach(el=>el.addEventListener('keyup',e=>{if(e.key==='Enter'){pag=1;render();}}));
+document.addEventListener('DOMContentLoaded',render);
+</script>
+</body>
+</html>
