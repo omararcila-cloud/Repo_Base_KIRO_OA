@@ -147,20 +147,6 @@ tbody tr:hover{background:#f8fdf9}
           <select id="f-agente"><option value="">Seleccione</option><option value="47669">47669 - GUILLERMO CORTES</option><option value="77631">77631 - SEGUROS COMERCIALES BOLIVAR SA</option><option value="77995">77995 - SEGUROS COMERCIALES BOLIVAR SA</option><option value="78203">78203 - SEGUROS COMERCIALES BOLIVAR SA</option><option value="78301">78301 - COMPANIA DE SEGUROS BOLIVAR S.A.</option></select>
         </div>
         <div class="field">
-          <label for="f-agrupador">Agrupador comercial</label>
-          <select id="f-agrupador"><option value="">Seleccione</option><option>Automóviles</option><option>Vida</option><option>Hogar</option><option>Salud</option><option>Pymes</option><option>Desempleo</option><option>Acc. Personales</option></select>
-        </div>
-        <div class="field">
-          <label for="f-sublinea">Sublínea comercial</label>
-          <select id="f-sublinea"><option value="">Seleccione</option><option>Hogar</option><option>Empleados</option><option>Independientes</option><option>Personal</option><option>Familiar</option><option>Empresarial</option></select>
-        </div>
-        <div class="field">
-          <label for="f-poliza">Número de póliza</label>
-          <input type="text" id="f-poliza" placeholder="Ej: 1234567">
-        </div>
-      </div>
-      <div class="filter-row">
-        <div class="field">
           <label for="f-tipodoc">Tipo de documento</label>
           <select id="f-tipodoc"><option value="">Seleccione</option><option value="CC">CC</option><option value="CE">CE</option><option value="NT">NT</option><option value="NIT">NIT</option></select>
         </div>
@@ -169,26 +155,40 @@ tbody tr:hover{background:#f8fdf9}
           <input type="text" id="f-numdoc" placeholder="Ej: 1234567890">
         </div>
         <div class="field">
-          <label for="f-madre">Póliza madre</label>
-          <input type="text" id="f-madre" placeholder="Ej: 9876543">
-        </div>
-        <div class="field">
-          <label for="f-estado">Estado póliza</label>
-          <select id="f-estado"><option value="">Seleccione</option><option value="Vigente">Vigente</option><option value="Cancelada">Cancelada</option></select>
+          <label for="f-agrupador">Agrupador comercial</label>
+          <select id="f-agrupador"><option value="">Seleccione</option><option>Automóviles</option><option>Vida</option><option>Hogar</option><option>Salud</option><option>Pymes</option><option>Desempleo</option><option>Acc. Personales</option></select>
         </div>
       </div>
       <div class="filter-row">
         <div class="field">
-          <label for="f-prestamo">Estado del préstamo</label>
-          <select id="f-prestamo"><option value="">Seleccione</option><option value="SIN PRESTAMO">Sin préstamo</option><option value="CON PRESTAMO">Con préstamo</option></select>
+          <label for="f-sublinea">Sublínea comercial</label>
+          <select id="f-sublinea"><option value="">Seleccione</option><option>Hogar</option><option>Empleados</option><option>Independientes</option><option>Personal</option><option>Familiar</option><option>Empresarial</option></select>
+        </div>
+        <div class="field">
+          <label for="f-madre">Póliza madre</label>
+          <input type="text" id="f-madre" placeholder="Ej: 9876543">
+        </div>
+        <div class="field">
+          <label for="f-poliza">Número de póliza</label>
+          <input type="text" id="f-poliza" placeholder="Ej: 1234567">
         </div>
         <div class="field">
           <label for="f-vinicio">Vigencia inicio</label>
           <input type="date" id="f-vinicio">
         </div>
+      </div>
+      <div class="filter-row">
         <div class="field">
           <label for="f-vfin">Vigencia fin</label>
           <input type="date" id="f-vfin">
+        </div>
+        <div class="field">
+          <label for="f-estado">Estado póliza</label>
+          <select id="f-estado"><option value="">Seleccione</option><option value="Vigente">Vigente</option><option value="Cancelada">Cancelada</option></select>
+        </div>
+        <div class="field">
+          <label for="f-prestamo">Estado del préstamo</label>
+          <select id="f-prestamo"><option value="">Seleccione</option><option value="SIN PRESTAMO">Sin préstamo</option><option value="CON PRESTAMO">Con préstamo</option></select>
         </div>
         <div class="field" style="justify-content:flex-end">
           <a class="link-clear" onclick="limpiarFiltros()"><i class="fa-solid fa-filter-circle-xmark"></i> Limpiar filtros</a>
